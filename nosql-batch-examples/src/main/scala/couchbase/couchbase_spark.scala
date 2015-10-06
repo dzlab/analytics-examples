@@ -4,7 +4,6 @@ import common._
 import org.apache.spark.{SparkConf, SparkContext}
 import com.couchbase.spark._
 import com.couchbase.client.java.document.JsonDocument
-import com.couchbase.client.java.document.json.JsonObject
 import scala.util.{Try, Success, Failure}
 import nl.grons.metrics.scala._
 
@@ -38,9 +37,7 @@ object Spark extends Instrumented {
 
   def upload(filename: String)(implicit sc: SparkContext) {
     val rowRDD = sc.textFile(filename).map{row =>
-        val obj = JsonObject.create()
-        (anx.COLUMNS zip row.split("\t")).foreach{case(k, v) => obj.put(k, if(v == "NULL") 0 else v)}
-        JsonDocument.create(obj.get("auction_id_64").asInstanceOf[String], obj)
+        CouchbaseUtils.toJson(row.split("\t"))
       } 
       // save standard feeds to cassandra
       .saveToCouchbase()

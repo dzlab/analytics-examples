@@ -1,4 +1,4 @@
-name := "cassandra-spark"
+name := "nosql-batch-examples"
 
 version := "0.1"
 
@@ -23,6 +23,7 @@ net.virtualvoid.sbt.graph.Plugin.graphSettings
 libraryDependencies += "com.datastax.spark" %% "spark-cassandra-connector" % "1.3.0" % "provided"
 libraryDependencies += "com.couchbase.client" %% "spark-connector" % "1.0.0-beta" % "provided"
 libraryDependencies += "com.couchbase.client" % "java-client" % "2.2.0" % "provided"
+libraryDependencies += "com.aerospike" % "aerospike-client" % "latest.integration" % "provided"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "provided"
 libraryDependencies += "org.json4s" %% "json4s-jackson" % "3.2.11" % "provided"

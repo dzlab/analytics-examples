@@ -2,8 +2,6 @@ package couchbase
 
 import scala.util.{Try, Failure, Success}
 import com.couchbase.client.java.{Bucket, Cluster, CouchbaseCluster}
-import com.couchbase.client.java.document.JsonDocument
-import com.couchbase.client.java.document.json.JsonObject
 import nl.grons.metrics.scala._
 import common._
 
@@ -43,15 +41,12 @@ object JavaSDK extends Instrumented {
   def upload(input: String, size: Int)(implicit cluster: Cluster, bucket: Bucket) {
     val reader = new common.Reader(input)
     reader.consume(values => {
-      val auction: JsonObject = JsonObject.empty()
-      (anx.COLUMNS zip values).foreach{case(k, v) => auction.put(k, if(v == "NULL") 0 else v)}
-      val doc: JsonDocument = JsonDocument.create(auction.get("auction_id_64").asInstanceOf[String], auction)
-      wt.time{ bucket.upsert(doc) }
+      wt.time{ bucket.upsert(CouchbaseUtils.toJson(values)) }
     })
   }
 
   def query()(implicit cluster: Cluster, bucket: Bucket) {
-    val auction: JsonDocument = bucket.get("4139178651222865337")
+    val auction = bucket.get("4139178651222865337")
     println("Found: \n" + auction)
     cluster.disconnect()
   }

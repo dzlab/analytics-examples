@@ -32,6 +32,6 @@ class Options(args: Array[String]) extends ScallopConf(args) {
   val s = opt[Int](required = false, descr = "Batch size")
   val o = opt[String](required = false, descr = "Output directory where Cassandra tables will be stored")
   val n = opt[String](required = false, descr = "Node name/address")
-
+  val p = opt[Int](required = false, descr = "Node port number")
 }
 
