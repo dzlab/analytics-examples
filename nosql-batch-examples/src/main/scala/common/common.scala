@@ -28,10 +28,12 @@ trait Instrumented extends nl.grons.metrics.scala.InstrumentedBuilder {
 }
 
 class Options(args: Array[String]) extends ScallopConf(args) {
-  val i = opt[String](required = false, descr = "path to auctions (i.e. tandard_feed) file")
+  val i = opt[String](required = false, descr = "Path to auctions (i.e. tandard_feed) file")
   val s = opt[Int](required = false, descr = "Batch size")
   val o = opt[String](required = false, descr = "Output directory where Cassandra tables will be stored")
   val n = opt[String](required = false, descr = "Node name/address")
   val p = opt[Int](required = false, descr = "Node port number")
+  val r = opt[Boolean](required = false, descr = "Do any required registration/initialization")
+  val c = opt[String](required = false, descr = "Path to configuration file")
 }
 

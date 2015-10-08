@@ -16,7 +16,7 @@ object ByteUtil {
 }
 
 object int extends Converter {
-  def convert(value: String): java.lang.Integer = java.lang.Integer.valueOf(value)
+  def convert(value: String): java.lang.Integer = if(value=="NULL") null else java.lang.Integer.valueOf(value)
   def toBytes(value: String): ByteBuffer = {
     val bb = ByteBuffer.allocate(java.lang.Integer.BYTES).putInt(convert(value))//ByteBuffer.wrap(Array.fill(4)(0.asInstanceOf[Byte])).putInt(convert(value))
     bb.position(0)
@@ -27,7 +27,7 @@ object int extends Converter {
 }
 
 object bigint extends Converter {
-  def convert(value: String): java.lang.Long = java.lang.Long.valueOf(value)
+  def convert(value: String): java.lang.Long = if (value=="NULL") null else java.lang.Long.valueOf(value)
   def toBytes(value: String): ByteBuffer = {
     val bb = ByteBuffer.allocate(java.lang.Long.BYTES).putLong(convert(value))//ByteBuffer.wrap(Array.fill(8)(0.asInstanceOf[Byte])).putLong(convert(value))
     bb.position(0)
