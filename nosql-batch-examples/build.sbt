@@ -15,6 +15,7 @@ resolvers ++= Seq(
    "Twitter Repository"               at "http://maven.twttr.com",
    "Sonatype OSS Snapshots"           at "https://oss.sonatype.org/content/repositories/snapshots",
    "Couchbase Repository"             at "http://files.couchbase.com/maven2/",
+   "clojars"                         at "http://clojars.org/repo/",
     Resolver.bintrayRepo("websudos", "oss-releases")
  )
 
@@ -24,6 +25,10 @@ libraryDependencies += "com.datastax.spark" %% "spark-cassandra-connector" % "1.
 libraryDependencies += "com.couchbase.client" %% "spark-connector" % "1.0.0-beta" % "provided"
 libraryDependencies += "com.couchbase.client" % "java-client" % "2.2.0" % "provided"
 libraryDependencies += "com.aerospike" % "aerospike-client" % "latest.integration" % "provided"
+libraryDependencies += "com.basho.riak" % "riak-client" % "2.0.0" % "provided"
+libraryDependencies += "monetdb" % "monetdb-jdbc" % "2.8" % "provided"
+//libraryDependencies += "com.basho" % "spark-riak-connector" % "1.0.0"
+//libraryDependencies += "org.influxdb" % "influxdb-java" % "2.0"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "provided"
 libraryDependencies += "org.json4s" %% "json4s-jackson" % "3.2.11" % "provided"
