@@ -35,5 +35,6 @@ class Options(args: Array[String]) extends ScallopConf(args) {
   val p = opt[Int](required = false, descr = "Node port number")
   val r = opt[Boolean](required = false, descr = "Do any required registration/initialization")
   val c = opt[String](required = false, descr = "Path to configuration file")
+  val b = opt[Boolean](required = false, descr = "Whether to use bulk upload or no")
 }
 
