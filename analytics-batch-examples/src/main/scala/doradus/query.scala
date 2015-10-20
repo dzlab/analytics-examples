@@ -1,0 +1,4 @@
+package doradus
+
+object Query {
+}
